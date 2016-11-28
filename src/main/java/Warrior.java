@@ -13,6 +13,21 @@ public class Warrior implements WarriorInter, Cloneable {
     public Warrior(){
     }
 
+    public Warrior(Warrior w){
+        this.squadName = w.getSquadName();
+        this.warriorName = w.getWarriorName();
+        this.health = w.getHealth();
+        this.damage = w.getDamage();
+    }
+
+    public int getDamage(){
+        return this.damage;
+    }
+
+    public long getHealth(){
+        return this.health;
+    }
+
     public String getSquadName(){
         return this.squadName;
     }
@@ -20,6 +35,7 @@ public class Warrior implements WarriorInter, Cloneable {
     public String getWarriorName(){
         return this.warriorName;
     }
+
 
     @Override
     public int attack() {
@@ -57,19 +73,14 @@ public class Warrior implements WarriorInter, Cloneable {
 
     @Override
     public Warrior clone(){
-        Warrior w = null;
-        switch (this.getClass().getSimpleName()){
-            case "Archer":
-                w = new Archer(this.warriorName, this.squadName);
-                break;
-            case "Viking":
-                w = new Viking(this.warriorName, this.squadName);
-                break;
-        }
-        return w;
+        try {
+            Warrior w = (Warrior) super.clone();
+
+            return w;
+        }catch (Exception e){return null;}
     }
 
-    public void getInfo(){
-        System.out.println("Дамаг: " + this.damage + "\nХП: " + this.health);
+    public String getInfo(){
+        return ("Дамаг: " + this.damage + "\nХП: " + this.health);
     }
 }

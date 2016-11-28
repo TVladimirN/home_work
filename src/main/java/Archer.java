@@ -3,7 +3,7 @@ package main.java;
 /**
  * Created by Vo4ik on 26.11.2016.
  */
-public class Archer extends Warrior{
+public class Archer extends Warrior implements Cloneable{
 
 
     public Archer(){

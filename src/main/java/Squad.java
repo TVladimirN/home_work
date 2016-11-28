@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Vo4ik on 26.11.2016.
  */
-public class Squad {
+public class Squad implements Cloneable{
 
     private List<Warrior> warriors = new ArrayList<>();
     private List<Warrior> aliveWarriors = new ArrayList<>();
@@ -22,15 +22,7 @@ public class Squad {
     }
 
     public Warrior getRandomWarrior(){
-//        for(;;){
-            random = new Random(System.currentTimeMillis());
-//            Warrior w = warriors.get(random.nextInt(warriors.size()));
-//            if(w.isAlive()){
-//                return w;
-//            }else{
-//                continue;
-//            }
-//        }
+        random = new Random(System.currentTimeMillis());
         return aliveWarriors.get(random.nextInt(aliveWarriors.size()));
     }
 
@@ -41,20 +33,12 @@ public class Squad {
     }
 
     public boolean hasAliveWarriors(){
-        Boolean result = false;
         for(Warrior w : warriors){
             if(!w.isAlive()){
                 aliveWarriors.remove(w);
             }
         }
         return (aliveWarriors.size() > 0);
-//        for(Warrior w : warriors){
-//            if(w.isAlive()){
-//                result = true;
-//                break;
-//            }
-//        }
-//        return result;
     }
 
     @Override
@@ -64,18 +48,27 @@ public class Squad {
 
     @Override
     public Squad clone(){
-        List<Warrior> newWarriors = new ArrayList<>();
-        for(Warrior w : warriors){
-            switch (w.getClass().getSimpleName()){
-                case "Archer":
-                    newWarriors.add(new Archer());
-                case "Viking":
-                    newWarriors.add(new Viking());
+        Squad s = null;
+        try {
+            List<Warrior> newWarriors = new ArrayList<>();
+            for (Warrior w : warriors) {
+                newWarriors.add(w.clone());
             }
-        }
-        Squad s = new Squad(this.squadName+"_copy");
-        s.warriors.clear();
-        s.warriors.addAll(newWarriors);
+            s = new Squad(this.squadName + "_copy");
+            s.warriors.clear();
+            s.warriors.addAll(newWarriors);
+
+        }catch (Exception e){}
         return s;
+    }
+
+    public String getInfoSquad(){
+        String result = "";
+        result += this.squadName+"\n";
+        for(Warrior w : this.warriors){
+            result += w.toString();
+            result += w.getInfo() + "\n\n";
+        }
+        return result;
     }
 }

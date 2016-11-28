@@ -3,7 +3,10 @@ package main.java;
 /**
  * Created by Vo4ik on 26.11.2016.
  */
-public class Viking extends Warrior {
+public class Viking extends Warrior implements Cloneable {
+
+    private final int DAMAGE = 55;
+    private final long HEALTH = 200;
 
 
     public Viking(){
