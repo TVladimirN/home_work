@@ -11,6 +11,7 @@ public class Squad implements Cloneable{
 
     private List<Warrior> warriors = new ArrayList<>();
     private List<Warrior> aliveWarriors = new ArrayList<>(); //плохая идея хранить одних и тех же бойцов в двух списках. мертвые нам сейчас не нужны, их можно сразу удалять из отряда.
+    //Они не одинаковые, в первом хранятся все бойцы, а во втором тольок живые.
     private String squadName;
     private Random random;
 
