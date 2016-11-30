@@ -55,7 +55,6 @@ public class Squad implements Cloneable{
                 newWarriors.add(w.clone());
             }
             s = new Squad(this.squadName + "_copy");
-            s.warriors.clear(); //зачем чистить пустой список?
             s.warriors.addAll(newWarriors);
 
         }catch (Exception e){}

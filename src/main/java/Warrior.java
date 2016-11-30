@@ -49,11 +49,13 @@ public class Warrior implements WarriorInter, Cloneable { //если этот к
 
     @Override
     public boolean isAlive() {
-        if(health > 0){ //в местах, где проверяется/возвращается результат условия, можно сразу проверять/возвращать. в данном случае просто return health > 0;
-            return true;
-        }else{
-            return false;
-        }
+//        if(health > 0){ //в местах, где проверяется/возвращается результат условия, можно сразу проверять/возвращать. в данном случае просто return health > 0;
+//            return true;
+//        }else{
+//            return false;
+//        }
+        return health > 0;//Это по привычки расписываю все)
+
     }
 
     @Override
@@ -64,11 +66,11 @@ public class Warrior implements WarriorInter, Cloneable { //если этот к
     @Override
     public String toString(){
         //Вывод имя, клас и пренадлежность к отряду
-        StringBuilder sb = new StringBuilder(); //это избыточное создание кучи объектов. Либо использовать 1 format, либо просто конкатенацию строк
-        sb.append(String.format("Имя: %s\n", this.warriorName));
-        sb.append(String.format("Класс: %s\n", this.getClass().getSimpleName()));
-        sb.append(String.format("Отряд: %s\n", this.squadName));
-        return sb.toString();
+        String result = ""; //поправил
+        result.concat(String.format("Имя: %s\n", this.warriorName));
+        result.concat(String.format("Класс: %s\n", this.getClass().getSimpleName()));
+        result.concat(String.format("Отряд: %s\n", this.squadName));
+        return result;
     }
 
     @Override
@@ -79,8 +81,9 @@ public class Warrior implements WarriorInter, Cloneable { //если этот к
             return w;
         }catch (Exception e){return null;} //тут теряется вся информация о произошедшем исключении и возвращается null туда, где ожидается Warrior, что в будущем вызовет null pointer exception.
     }//+ плохое форматирование
+    //А как тут тогда следует поступить ? нового чтоли создавать ? эксепшен пробрасывать как правильнее будет ?
 
-    public String getInfo(){
+    public String getInfo() {//Это эксперементы в задании этого не было поэтому туда не внес
         return ("Дамаг: " + this.damage + "\nХП: " + this.health); //а это не должно быть частью toString?
     }
 }

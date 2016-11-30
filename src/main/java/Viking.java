@@ -5,10 +5,6 @@ package main.java;
  */
 public class Viking extends Warrior implements Cloneable {
 
-    private final int DAMAGE = 55; //эти переменные нигде не используются
-    private final long HEALTH = 200;
-
-
     public Viking(){
         damage = 55;
         health = 20;
