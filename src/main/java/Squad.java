@@ -10,7 +10,7 @@ import java.util.Random;
 public class Squad implements Cloneable{
 
     private List<Warrior> warriors = new ArrayList<>();
-    private List<Warrior> aliveWarriors = new ArrayList<>();
+    private List<Warrior> aliveWarriors = new ArrayList<>(); //плохая идея хранить одних и тех же бойцов в двух списках. мертвые нам сейчас не нужны, их можно сразу удалять из отряда.
     private String squadName;
     private Random random;
 
@@ -55,7 +55,7 @@ public class Squad implements Cloneable{
                 newWarriors.add(w.clone());
             }
             s = new Squad(this.squadName + "_copy");
-            s.warriors.clear();
+            s.warriors.clear(); //зачем чистить пустой список?
             s.warriors.addAll(newWarriors);
 
         }catch (Exception e){}
@@ -66,7 +66,7 @@ public class Squad implements Cloneable{
         String result = "";
         result += this.squadName+"\n";
         for(Warrior w : this.warriors){
-            result += w.toString();
+            result += w.toString(); //конкатенация строк в цикле порождает кучу ненужных объектов! тут НУЖНО использовать StringBuilder.
             result += w.getInfo() + "\n\n";
         }
         return result;

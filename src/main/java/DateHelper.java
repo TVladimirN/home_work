@@ -25,7 +25,7 @@ public class DateHelper {
         cur.add(Calendar.MINUTE, +45);
     }
 
-    public String getFormattedDiff(){
+    public String getFormattedDiff(){ //это вообще неправильно, проверь
         end = cur.getTimeInMillis();
         cur.clear();
         cur.add(Calendar.MILLISECOND, (int)(end - start));
